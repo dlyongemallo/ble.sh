@@ -6101,7 +6101,7 @@ function ble/syntax/completion-context/prefix:brace {
     ble/string#split-words nest "$nest"
     ctx1=${nest[0]}
     ((ctx1==CTX_BRACE1||ctx1==CTX_BRACE2)) || break
-    inest1=${nest[3]}
+    inest1=$((nest[3]<0?nest[3]:inest1-nest[3]))
     ((inest1>=0)) || return 1
   done
 

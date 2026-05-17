@@ -3,7 +3,7 @@
 ble-import lib/core-syntax
 ble-import lib/core-test
 
-ble/test/start-section 'ble/syntax' 22
+ble/test/start-section 'ble/syntax' 30
 
 (
   func=ble/syntax:bash/simple-word/evaluate-last-brace-expansion
@@ -40,6 +40,28 @@ ble/test/start-section 'ble/syntax' 22
   ble/test "$func '~/a/b/c'            ; $collect" ret="~ ~/a ~/a/b ~/a/b/c >>> $HOME $HOME/a $HOME/a/b $HOME/a/b/c"
   ble/test "$func '~/a/b/c' / after-sep; $collect" ret="~/ ~/a/ ~/a/b/ ~/a/b/c >>> $HOME/ $HOME/a/ $HOME/a/b/ $HOME/a/b/c"
   ble/test "$func '/x/y/z' / after-sep ; $collect" ret="/ /x/ /x/y/ /x/y/z >>> / /x/ /x/y/ /x/y/z"
+)
+
+# Regression test for #698: nested brace contexts (e.g. "{{{") used to send
+# ble/syntax/completion-context/prefix:brace into an infinite loop.
+(
+  function ble/test:syntax/completion-context {
+    local input=$1
+    ble/syntax/initialize-vars
+    ble/syntax/parse "$input" ''
+    sources=()
+    ble/syntax/completion-context/generate "$input" "${#input}"
+    ret=${sources[*]}
+  }
+  func=ble/test:syntax/completion-context
+  ble/test "$func '{'           " ret='command 0'
+  ble/test "$func '{{'          " ret='argument 0'
+  ble/test "$func '{{{'         " ret='argument 0'
+  ble/test "$func '{{{{'        " ret='argument 0'
+  ble/test "$func 'a{b,'        " ret='argument 0'
+  ble/test "$func 'a{{b,'       " ret='argument 0'
+  ble/test "$func 'a{{{b,'      " ret='argument 0'
+  ble/test "$func 'a{b,{c,{d,'  " ret='argument 0'
 )
 
 ble/test/end-section
