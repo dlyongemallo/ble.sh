@@ -50,18 +50,20 @@ ble/test/start-section 'ble/syntax' 30
     ble/syntax/initialize-vars
     ble/syntax/parse "$input" ''
     sources=()
-    ble/syntax/completion-context/generate "$input" "${#input}"
-    ret=${sources[*]}
+    ble/util/conditional-sync '
+      ble/syntax/completion-context/generate "$input" "${#input}"
+      echo "${sources[*]}"
+    ' true '' timeout=100
   }
   func=ble/test:syntax/completion-context
-  ble/test "$func '{'           " ret='command 0'
-  ble/test "$func '{{'          " ret='argument 0'
-  ble/test "$func '{{{'         " ret='argument 0'
-  ble/test "$func '{{{{'        " ret='argument 0'
-  ble/test "$func 'a{b,'        " ret='argument 0'
-  ble/test "$func 'a{{b,'       " ret='argument 0'
-  ble/test "$func 'a{{{b,'      " ret='argument 0'
-  ble/test "$func 'a{b,{c,{d,'  " ret='argument 0'
+  ble/test "$func '{'           " exit=0 stdout='command 0'
+  ble/test "$func '{{'          " exit=0 stdout='argument 0'
+  ble/test "$func '{{{'         " exit=0 stdout='argument 0'
+  ble/test "$func '{{{{'        " exit=0 stdout='argument 0'
+  ble/test "$func 'a{b,'        " exit=0 stdout='argument 0'
+  ble/test "$func 'a{{b,'       " exit=0 stdout='argument 0'
+  ble/test "$func 'a{{{b,'      " exit=0 stdout='argument 0'
+  ble/test "$func 'a{b,{c,{d,'  " exit=0 stdout='argument 0'
 )
 
 ble/test/end-section
