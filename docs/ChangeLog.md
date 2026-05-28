@@ -50,7 +50,7 @@
   - edit: support `bleopt edit_magic_accept=verify-syntax` `#D2178` ac84c153
   - edit: support `bleopt edit_magic_{expand,accept}=autocd` (motivated by Jai-JAP) `#D2187` b6344b3b
   - edit (`edit_magic_{accept,expand}`): support user-defined expansion (motivated by Jai-JAP) `#D2395` aa5bd676 eb349ea6
-  - complete: apply `alias`/`autocd` expansions globally on `magic-accept` (motivated by Jai-JAP) `#D2399` a34b177a e7dbf375 xxxxxxxx
+  - complete: apply `alias`/`autocd` expansions globally on `magic-accept` (motivated by Jai-JAP) `#D2399` a34b177a e7dbf375 b99cadb4
 - main: support shell variable `BLE_VER` `#D2177` a12dedab
 - util(bleopt, blehook, ble-face): support wildcards `*` and `?` and change `@` to match an empty string `#D2182` bf595293
 - complete(cd): complete variable names for `cdable_vars` `#D2190` 10527901
@@ -274,6 +274,8 @@
 - decode (`ble/builtin/bind`): treat the last `\e` as an isolated ESC (reported by sharpchen) `#D2385` cafef0c6
 - main (`ble/bin/awk`): work around `gawk-5.4.0` bug for `gensub` back-references (reported by 0xhtml, raeraex2, l0042158) `#D2394` 40cc5766
 - mandb: support the man-page format of `docker` (reported by NecRaul) `#D2398` a34b177a
+- msys: work around `OSTYPE=cygwin` in msys-2.0 `#D2404` e9bef3c0
+- github: update the version of `actions/checkout` `#D2405` xxxxxxxx
 
 ## Contrib
 

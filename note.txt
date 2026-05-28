@@ -8211,6 +8211,10 @@ bash_tips
 
 2026-05-28
 
+  * github: また actions/checkout のバージョンが上がっている [#2405]
+
+    更新しなければならない。
+
   * msys: OSTYPE が嘘をつき始めた [#D2404]
 
     github CI 上で実態は msys なのにOSTYPE=cygwin になる。しかし実際には msys2
