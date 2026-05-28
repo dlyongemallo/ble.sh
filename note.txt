@@ -8211,6 +8211,13 @@ bash_tips
 
 2026-05-28
 
+  * make: race condition (reported by sanvila) [#2406]
+    https://github.com/akinomyoga/ble.sh/issues/688
+
+    * https://github.com/akinomyoga/ble.sh/issues/689 ほぼ同時期に類似の報告が
+      あって色々調べていたが、これは既に修正済みの問題だった。なので、
+      GitHub#688 の方で報告された修正だけで十分であるという結論になった。
+
   * github: また actions/checkout のバージョンが上がっている [#2405]
 
     更新しなければならない。

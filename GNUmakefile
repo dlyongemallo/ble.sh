@@ -156,7 +156,7 @@ $(OUTDIR)/lib/init-bind.sh: lib/init-bind.sh | $(OUTDIR)/lib
 	$(MWGPP) $< > $@
 
 outfiles += $(OUTDIR)/lib/benchmark.ksh
-$(OUTDIR)/lib/benchmark.ksh: lib/benchmark.ksh src/benchmark.sh
+$(OUTDIR)/lib/benchmark.ksh: lib/benchmark.ksh src/benchmark.sh | $(OUTDIR)/lib
 	$(MWGPP) $< > $@
 
 #outfiles += $(OUTDIR)/lib/init-msleep.sh
@@ -201,9 +201,9 @@ endif
 # However, because of a bug in make-3.81, this rule overrides all the other
 # more detailed patterns such as $(OUTDIR)/doc/contrib/%.md.  As a result, even
 # when we want to apply preprocessing to specific file patterns under
-# $(OUTDIR)/doc/%, $(CP) is always is used to install the files.  To work
-# around this problem in make-3.81, we need to manually filter the target files
-# whose source files are at the top level in the source tree.
+# $(OUTDIR)/doc/%, $(CP) is always used to install the files.  To work around
+# this problem in make-3.81, we need to manually filter the target files whose
+# source files are at the top level in the source tree.
 #
 outfiles-doc-toplevel := \
   $(filter $(outfiles-doc),$(patsubst %,$(OUTDIR)/doc/%,$(wildcard *.md)))
