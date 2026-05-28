@@ -201,6 +201,7 @@
 - cmdspec (`declare/chroma`): fix a bug of evaluating global variable `d` (reported by LeonardoMor) `#D2387` 57ad2bf5
 - util (`ble/function#advice`): fix `-f` doing the opposite (reported by Funeralsawa) `#D2401` 801cc1c8
 - make: fix a race condition (reported by sanvila) `#2406` xxxxxxxx
+- syntax (completion-context): fix an infinite loop caused by nested braces (fixed by dlyongemallo) `#D2407` xxxxxxxx
 
 ## Compatibility
 
