@@ -8211,7 +8211,7 @@ bash_tips
 
 2026-05-28
 
-  * completion-context: fix an infinite loop caused by nested braces (fixed by dlyongemallo) [#D2407]
+  * syntax (completion-context): fix an infinite loop caused by nested braces (fixed by dlyongemallo) [#D2407]
     https://github.com/akinomyoga/ble.sh/pull/699
 
     これは確かにバグである。そして提出された修正は正しい。テストを修正して適用
